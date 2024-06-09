@@ -24,7 +24,7 @@ public class Login extends JFrame {
 
         JLabel text = new JLabel("Welcome to ATM");
         text.setFont(new Font("OSTWARD", Font.BOLD, 40));
-        text.setBounds(250, 20, 400, 50); 
+        text.setBounds(350, 20, 400, 50); 
 
         JLabel cardno = new JLabel("Card NUMBER:");
         cardno.setFont(new Font("RALEWAY", Font.BOLD, 28));
@@ -42,11 +42,23 @@ public class Login extends JFrame {
         pinField.setFont(new Font("Arial", Font.PLAIN, 28));
         pinField.setBounds(300, 220, 250, 30);
 
-        JButton loginBtn = new JButton("Login");
+        JButton loginBtn = new JButton("Sign IN");
         loginBtn.setFont(new Font("RALEWAY", Font.BOLD, 28));
-        loginBtn.setBounds(300, 300, 150, 50);
+        loginBtn.setBounds(100, 300, 150, 50);
         loginBtn.setBackground(Color.black);
         loginBtn.setForeground(Color.white);
+        
+        JButton clear = new JButton("Clear");
+        clear.setFont(new Font("RALEWAY", Font.BOLD, 28));
+        clear.setBounds(300, 300, 150, 50);
+        clear.setBackground(Color.black);
+        clear.setForeground(Color.white);
+
+        JButton signUp = new JButton("Sign Up");
+        signUp.setFont(new Font("RALEWAY", Font.BOLD, 28));
+        signUp.setBounds(500, 300, 150, 50);
+        signUp.setBackground(Color.black);
+        signUp.setForeground(Color.white);
 
         panel.add(label);
         panel.add(text);
@@ -55,9 +67,11 @@ public class Login extends JFrame {
         panel.add(pin);
         panel.add(pinField);
         panel.add(loginBtn);
+        panel.add(clear);
+        panel.add(signUp);
 
         add(panel);
-        setSize(600, 400); 
+        setSize(800, 500); // Adjusted size for better layout
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
