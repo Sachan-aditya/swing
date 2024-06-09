@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Login extends JFrame {
+public class Login extends JFrame implements ActionListener {
 
     Login() {
         setTitle("Automated Teller Machine");
@@ -47,18 +49,22 @@ public class Login extends JFrame {
         loginBtn.setBounds(100, 300, 150, 50);
         loginBtn.setBackground(Color.black);
         loginBtn.setForeground(Color.white);
+        loginBtn.addActionListener(this);
         
         JButton clear = new JButton("Clear");
         clear.setFont(new Font("RALEWAY", Font.BOLD, 28));
         clear.setBounds(300, 300, 150, 50);
         clear.setBackground(Color.black);
         clear.setForeground(Color.white);
+        clear .addActionListener(this);
+
 
         JButton signUp = new JButton("Sign Up");
         signUp.setFont(new Font("RALEWAY", Font.BOLD, 28));
         signUp.setBounds(500, 300, 150, 50);
         signUp.setBackground(Color.black);
         signUp.setForeground(Color.white);
+        signUp.addActionListener(this);
 
         panel.add(label);
         panel.add(text);
@@ -71,12 +77,15 @@ public class Login extends JFrame {
         panel.add(signUp);
 
         add(panel);
-        setSize(800, 500); // Adjusted size for better layout
+        setSize(800, 500);
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+  public void actionPerformed(ActionEvent ae)
+  {
 
+  }
     public static void main(String[] args) {
         new Login();
     }
