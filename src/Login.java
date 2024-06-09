@@ -2,46 +2,62 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Login extends JFrame {
 
     Login() {
         setTitle("Automated Teller Machine");
         JPanel panel = new JPanel();
-        panel.setLayout(null); // No layout manager
+        panel.setLayout(null);
         panel.setBackground(Color.white);
 
-        // Load and scale the image
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/images.jpeg"));
         Image i2 = i1.getImage().getScaledInstance(200, 100, Image.SCALE_DEFAULT);
         ImageIcon i3 = new ImageIcon(i2);
         JLabel label = new JLabel(i3);
-        label.setBounds(100, 80, 100, 100); // Manually set position and size
+        label.setBounds(50, 10, 200, 100); 
 
         JLabel text = new JLabel("Welcome to ATM");
         text.setFont(new Font("OSTWARD", Font.BOLD, 40));
-        text.setBounds(250,80, 400, 50); // Manually set position and size
+        text.setBounds(250, 20, 400, 50); 
 
-        JLabel cardno = new JLabel("Card NUMBER");
-        cardno.setFont(new Font("OSTWARD", Font.BOLD, 38));
-        cardno.setBounds(150, 200, 300, 50); // Manually set position and size
+        JLabel cardno = new JLabel("Card NUMBER:");
+        cardno.setFont(new Font("RALEWAY", Font.BOLD, 28));
+        cardno.setBounds(50, 150, 250, 30); 
 
-        JLabel pin = new JLabel("PIN NUMBER");
-        pin.setFont(new Font("OSTWARD", Font.BOLD, 38));
-        pin.setBounds(150, 270, 300, 50); // Manually set position and size
+        JTextField cardnoField = new JTextField();
+        cardnoField.setFont(new Font("Arial", Font.PLAIN, 28));
+        cardnoField.setBounds(300, 150, 250, 30);
 
-        // Add components to the panel
+        JLabel pin = new JLabel("PIN NUMBER:");
+        pin.setFont(new Font("RALEWAY", Font.BOLD, 28));
+        pin.setBounds(50, 220, 250, 30); 
+
+        JTextField pinField = new JTextField();
+        pinField.setFont(new Font("Arial", Font.PLAIN, 28));
+        pinField.setBounds(300, 220, 250, 30);
+
+        JButton loginBtn = new JButton("Login");
+        loginBtn.setFont(new Font("RALEWAY", Font.BOLD, 28));
+        loginBtn.setBounds(300, 300, 150, 50);
+        loginBtn.setBackground(Color.black);
+        loginBtn.setForeground(Color.white);
+
         panel.add(label);
         panel.add(text);
         panel.add(cardno);
+        panel.add(cardnoField);
         panel.add(pin);
+        panel.add(pinField);
+        panel.add(loginBtn);
 
-        // Add panel to the frame
         add(panel);
-        setSize(600, 400); // Adjusted size for better visibility
+        setSize(600, 400); 
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
