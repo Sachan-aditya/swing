@@ -14,8 +14,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
 import java.awt.Color;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Signup extends JFrame implements ActionListener {
 
@@ -27,6 +25,7 @@ public class Signup extends JFrame implements ActionListener {
     JButton next;
     ButtonGroup genderGroup, maritalStatusGroup;
     long random;
+    Databaseconnect databaseConnect;
 
     Signup() {
         setLayout(null);
@@ -167,13 +166,15 @@ public class Signup extends JFrame implements ActionListener {
         setVisible(true); 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setTitle("SIGN UP");
+
+ databaseConnect =new Databaseconnect();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == next) {
             try {
-                String applicationNumber = String.valueOf(random);
+                String fono = String.valueOf(random);
                 String name = namTextField.getText();
                 if (name.isEmpty()) {
                     throw new Exception("Name field is empty");
@@ -224,20 +225,7 @@ public class Signup extends JFrame implements ActionListener {
                     throw new Exception("Pincode field is empty");
                 }
 
-                // Display the collected information (for demonstration purposes)
-                System.out.println("Application Number: " + applicationNumber);
-                System.out.println("Name: " + name);
-                System.out.println("Father's Name: " + fatherName);
-                System.out.println("Date of Birth: " + dob);
-                System.out.println("Email: " + email);
-                System.out.println("Gender: " + gender);
-                System.out.println("Marital Status: " + maritalStatus);
-                System.out.println("Address: " + address);
-                System.out.println("City: " + city);
-                System.out.println("State: " + state);
-                System.out.println("Pincode: " + pincode);
-
-                // Add code to handle next button click, e.g., validate input and move to the next form/page
+                databaseConnect.actionPerformed(this);
 
             } catch (Exception ex) {
                 // Handle and display the exception message
