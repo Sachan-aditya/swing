@@ -3,6 +3,7 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import com.toedter.calendar.JDateChooser;
 
 public class Signup extends JFrame {
 
@@ -50,9 +51,10 @@ public class Signup extends JFrame {
         dob.setBounds(100, 220, 200, 30); 
         add(dob);
 
-        JTextField dobTextField = new JTextField();
-        dobTextField.setBounds(300, 220, 200, 30);
-        add(dobTextField);
+        JDateChooser dobDateChooser = new JDateChooser();
+        dobDateChooser.setDateFormatString("yyyy-MM-dd"); // Set the date format
+        dobDateChooser.setBounds(300, 220, 200, 30);
+        add(dobDateChooser);
 
         JLabel email = new JLabel("Email");
         email.setBounds(100, 260, 200, 30); 
