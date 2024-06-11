@@ -1,19 +1,18 @@
-import java.util.Random;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
-
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-
-import java.awt.Color;
 
 public class Signup extends JFrame implements ActionListener {
 
@@ -30,11 +29,9 @@ public class Signup extends JFrame implements ActionListener {
     Signup() {
         setLayout(null);
         
-        // Generate random application form number
-        Random ran = new Random();
-        random = Math.abs(ran.nextLong() % 900L + 1000L);
-        
-        fono = new JLabel("APPLICATION FORM NO." + random);
+           Random rand = new Random();
+        int randomFono = 1000 + rand.nextInt(9000);
+        fono = new JLabel("APPLICATION FORM NO." + randomFono);
         fono.setBounds(140, 20, 600, 40);
         Font font = new Font("RALEWAY", Font.BOLD, 30);
         fono.setFont(font);
@@ -167,7 +164,7 @@ public class Signup extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setTitle("SIGN UP");
 
- databaseConnect =new Databaseconnect();
+        databaseConnect = new Databaseconnect();
     }
 
     @Override
@@ -195,12 +192,12 @@ public class Signup extends JFrame implements ActionListener {
                     throw new Exception("Email field is empty");
                 }
 
-                String gender = male.isSelected() ? "Male" : female.isSelected() ? "Female" : "";
+                String gender = male.isSelected()? "Male" : female.isSelected()? "Female" : "";
                 if (gender.isEmpty()) {
                     throw new Exception("Gender is not selected");
                 }
 
-                String maritalStatus = married.isSelected() ? "Married" : notmarried.isSelected() ? "Not Married" : other.isSelected() ? "Others" : "";
+                String maritalStatus = married.isSelected()? "Married" : notmarried.isSelected()? "Not Married" : other.isSelected()? "Others" : "";
                 if (maritalStatus.isEmpty()) {
                     throw new Exception("Marital Status is not selected");
                 }
@@ -225,7 +222,10 @@ public class Signup extends JFrame implements ActionListener {
                     throw new Exception("Pincode field is empty");
                 }
 
-                databaseConnect.actionPerformed(this);
+                // databaseConnect.actionPerformed(this); // This line is incorrect. You cannot call actionPerformed method on another class.
+
+                // Instead, you should call a method on databaseConnect that inserts the data into the database.
+                databaseConnect.insertData(fono, name, fatherName, dob, email, gender, maritalStatus, address, city, state, pincode);
 
             } catch (Exception ex) {
                 // Handle and display the exception message
