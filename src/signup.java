@@ -224,6 +224,8 @@ public class Signup extends JFrame implements ActionListener {
 
                 // databaseConnect.actionPerformed(this); // This line is incorrect. You cannot call actionPerformed method on another class.
 
+               setVisible(false);
+               new Signup2(fono).setVisible(true);
                 // Instead, you should call a method on databaseConnect that inserts the data into the database.
                 databaseConnect.insertData(fono, name, fatherName, dob, email, gender, maritalStatus, address, city, state, pincode);
 

@@ -9,22 +9,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import com.toedter.calendar.JDateChooser; // Added semicolon here
 import javax.swing.JTextField;
 
 public class Signup2 extends JFrame implements ActionListener {
 
     JLabel ad, religionLabel, categoryLabel, educationLabel, occupationLabel, qualificationLabel, panNumberLabel, incomeLabel, adharNumberLabel, seniorCitizenLabel, existingAccountLabel;
-    JTextField occupationTextField, qualificationTextField, panNumberTextField, adharNumberTextField, seniorCitizenTextField, existingAccountTextField;
-    JComboBox<String> religionComboBox, categoryComboBox, educationComboBox, incomeComboBox;
-    JDateChooser dobDateChooser;
+    JTextField occupationTextField, qualificationTextField, panNumberTextField, adharNumberTextField;
+    JComboBox<String> religionComboBox, categoryComboBox, educationComboBox, incomeComboBox, OCCUP;
     JButton next;
-    ButtonGroup genderGroup, maritalStatusGroup;
-    JRadioButton male, female, married, notmarried, other;
+    ButtonGroup seniorCitizenGroup, existingAccountGroup;
+    JRadioButton seniorYes, seniorNo, existingYes, existingNo;
     long random;
     Databaseconnect databaseConnect;
 
-    Signup2() {
+    Signup2(String form) {
         setLayout(null);
         setTitle("NEW ACCOUNT DETAILS");
 
@@ -68,10 +66,11 @@ public class Signup2 extends JFrame implements ActionListener {
         occupationLabel = new JLabel("OCCUPATION");
         occupationLabel.setBounds(100, 220, 200, 30);
         add(occupationLabel);
-
-        occupationTextField = new JTextField();
-        occupationTextField.setBounds(300, 220, 200, 30);
-        add(occupationTextField);
+        String[] OCCU = {"","SALARIED", "SELF EMPLOYED", "BUSINESS", "STUDENT", "OTHERS"};
+        OCCUP = new JComboBox<>(OCCU);
+        OCCUP.setBounds(300, 220, 200, 30);
+        OCCUP.setBackground(Color.WHITE);
+        add(OCCUP);
 
         qualificationLabel = new JLabel("QUALIFICATION");
         qualificationLabel.setBounds(100, 260, 200, 30);
@@ -110,18 +109,33 @@ public class Signup2 extends JFrame implements ActionListener {
         seniorCitizenLabel = new JLabel("SENIOR CITIZEN");
         seniorCitizenLabel.setBounds(100, 420, 200, 30);
         add(seniorCitizenLabel);
-
-        seniorCitizenTextField = new JTextField();
-        seniorCitizenTextField.setBounds(300, 420, 200, 30);
-        add(seniorCitizenTextField);
+        seniorCitizenGroup = new ButtonGroup();
+        seniorYes = new JRadioButton("YES");
+        seniorYes.setBounds(300, 420, 80, 30);
+        seniorYes.setBackground(Color.WHITE);
+        seniorCitizenGroup.add(seniorYes);
+        add(seniorYes);
+        seniorNo = new JRadioButton("NO");
+        seniorNo.setBounds(390, 420, 60, 30);
+        seniorNo.setBackground(Color.WHITE);
+        seniorCitizenGroup.add(seniorNo);
+        add(seniorNo);
 
         existingAccountLabel = new JLabel("EXISTING ACCOUNT");
         existingAccountLabel.setBounds(100, 460, 200, 30);
         add(existingAccountLabel);
 
-        existingAccountTextField = new JTextField();
-        existingAccountTextField.setBounds(300, 460, 200, 30);
-        add(existingAccountTextField);
+        existingAccountGroup = new ButtonGroup();
+        existingYes = new JRadioButton("YES");
+        existingYes.setBounds(300, 460, 80, 30);
+        existingYes.setBackground(Color.WHITE);
+        existingAccountGroup.add(existingYes);
+        add(existingYes);
+        existingNo = new JRadioButton("NO");
+        existingNo.setBounds(410, 460, 60, 30);
+        existingNo.setBackground(Color.WHITE);
+        existingAccountGroup.add(existingNo);
+        add(existingNo);
 
         next = new JButton("Next");
         next.setBounds(300, 500, 100, 30);
@@ -149,16 +163,16 @@ public class Signup2 extends JFrame implements ActionListener {
                 String religion = (String) religionComboBox.getSelectedItem();
                 String category = (String) categoryComboBox.getSelectedItem();
                 String education = (String) educationComboBox.getSelectedItem();
-                String occupation = occupationTextField.getText();
+                String occupation = (String) OCCUP.getSelectedItem();
                 String qualification = qualificationTextField.getText();
                 String panNumber = panNumberTextField.getText();
                 String income = (String) incomeComboBox.getSelectedItem();
                 String adharNumber = adharNumberTextField.getText();
-                String seniorCitizen = seniorCitizenTextField.getText();
-                String existingAccount = existingAccountTextField.getText();
+                String seniorCitizen = seniorYes.isSelected() ? "YES" : "NO";
+                String existingAccount = existingYes.isSelected() ? "YES" : "NO";
 
-                if (religion.isEmpty() || category.isEmpty() || education.isEmpty() || occupation.isEmpty() || qualification.isEmpty() ||
-                        panNumber.isEmpty() || income.isEmpty() || adharNumber.isEmpty() || seniorCitizen.isEmpty() || existingAccount.isEmpty()) {
+                if (religion.equals("Select Religion") || category.equals("Select Category") || education.equals("Select Education") || occupation.isEmpty() || qualification.isEmpty() ||
+                        panNumber.isEmpty() || income.equals("") || adharNumber.isEmpty() || seniorCitizen.isEmpty() || existingAccount.isEmpty()) {
                     throw new Exception("Please fill all the fields");
                 }
 
@@ -174,6 +188,6 @@ public class Signup2 extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new Signup2();
+        new Signup2("");
     }
 }
