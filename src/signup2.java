@@ -177,7 +177,7 @@ public class Signup2 extends JFrame implements ActionListener {
                 }
 
                 // Assuming the databaseConnect.insertData method exists
-                databaseConnect.insertData(fono, religion, category, education, occupation, qualification, panNumber, income, adharNumber, seniorCitizen, existingAccount);
+                databaseConnect.insertData2(fono, religion, category, education, occupation, qualification, panNumber, income, adharNumber, seniorCitizen, existingAccount);
 
                 JOptionPane.showMessageDialog(this, "Data saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
