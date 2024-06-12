@@ -44,7 +44,7 @@ public class Login extends JFrame implements ActionListener {
         pin.setFont(new Font("RALEWAY", Font.BOLD, 28));
         pin.setBounds(50, 220, 250, 30);
 
-        pinField = new JPasswordField(); // Corrected class name
+        pinField = new JPasswordField(); 
         pinField.setFont(new Font("Arial", Font.PLAIN, 28));
         pinField.setBounds(300, 220, 250, 30);
 
@@ -93,7 +93,8 @@ public class Login extends JFrame implements ActionListener {
         } else if (ae.getSource() == loginBtn) {
             // Implement login logic here
         } else if (ae.getSource() == signUp) {
-            // Implement sign up logic here
+            setVisible(false);
+            new Signup().setVisible(true); // Corrected here
         }
     }
 
