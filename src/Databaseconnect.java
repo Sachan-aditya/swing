@@ -65,7 +65,20 @@ public class Databaseconnect {
             System.out.println("Error inserting data into Signup2: " + e.getMessage());
         }
     }
-
+    public void insertData3(String fono, String atype, String cardno, String pin, String facility) {
+        String query = "INSERT INTO  account_details (fono, atype, cardno, pin, facility) VALUES (?,?,?,?,?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, fono);
+            pstmt.setString(2, atype);
+            pstmt.setString(3, cardno);
+            pstmt.setString(4, pin);
+            pstmt.setString(5, facility);
+            pstmt.executeUpdate();
+            System.out.println("Data inserted successfully into signup3");
+        } catch (SQLException e) {
+            System.out.println("Error inserting data into signup3: " + e.getMessage());
+        }
+    }
     public void closeConnection() {
         try {
             if (conn != null && !conn.isClosed()) {
